@@ -2,17 +2,15 @@ import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi'
-import { FaInfoCircle } from 'react-icons/fa'
 import { TbMountain } from 'react-icons/tb'
 
-const navLinks = ['Home', 'Predict', 'Suitability Map', 'Contact']
+const navLinks = ['Home', 'Predict', 'Contact']
 
 const linkToPath: Record<string, string> = {
-  'Home':            '/',
-  'Predict':         '/predict',
-  'Suitability Map': '/map',
-  'Contact':         '/contact',
-  'About':           '/about',
+  'Home':    '/',
+  'Predict': '/predict',
+  'Contact': '/contact',
+  'About':   '/about',
 }
 
 interface NavbarProps {
@@ -153,29 +151,6 @@ export default function Navbar({ darkMode, onToggleDark }: NavbarProps) {
                 }}
               />
             </button>
-
-            {/* About Project */}
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              onClick={() => handleNav('About')}
-              className="hidden sm:flex items-center gap-1.5"
-              style={{
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 600,
-                fontSize: '13px',
-                color: '#fff',
-                background: '#22c55e',
-                border: 'none',
-                borderRadius: 99,
-                padding: '7px 16px',
-                cursor: 'pointer',
-                boxShadow: '0 2px 10px rgba(34,197,94,0.4)',
-              }}
-            >
-              <FaInfoCircle size={12} />
-              About Project
-            </motion.button>
 
             {/* Mobile hamburger */}
             <button

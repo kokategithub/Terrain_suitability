@@ -32,3 +32,16 @@ service-account.json
 *.key
 *.pem
 gee-credentials.json
+
+# Large model files — store separately (too large for GitHub)
+*.pth
+*.pkl
+backend/model/ecotourism_model.pkl
+backend/model/class_labels.pkl
+backend/model/attention_unet_dice_ce_best.pth
+backend/model/attention_unet_dice_ce_re_saved.pkl
+
+# Temp test files
+test_*.py
+final_model*.ipynb
+trainingDataset/

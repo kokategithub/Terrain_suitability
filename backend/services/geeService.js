@@ -88,9 +88,11 @@ async function extractFeatures(latitude, longitude) {
   const today  = daysAgo(0);
   const ERA5   = 'ECMWF/ERA5_LAND/DAILY_AGGR';
 
-  // ── India check (must be first) ───────────────────────────────────────────
-  const inside = await isInsideIndia(point);
-  if (!inside) {
+  // ── India bounding box check ─────────────────────────────────────────────
+  // Using a geographic bounding box instead of FAO boundary polygon
+  // which misses Arunachal Pradesh, coastal Kerala, and island territories.
+  // India bounding box: lat 6.5–37.1, lng 68.1–97.4
+  if (latitude < 6.5 || latitude > 37.1 || longitude < 68.1 || longitude > 97.4) {
     const err = new Error('Please enter coordinates within India.');
     err.code = 'OUTSIDE_INDIA';
     throw err;
