@@ -19,6 +19,7 @@ export const CLASS_BORDER: Record<SuitabilityClass, string> = {
   'Not Suitable':         '#cbd5e1',
 }
 
+<<<<<<< HEAD
 export interface PredictionExplanation {
   summary:          string
   positive_factors: string[]
@@ -39,6 +40,13 @@ export interface PredictionResult {
   label:      string
   class_id:   number | null
   score:      number | null
+=======
+// ─── UI result ──────────────────────────────────────────────────────────────
+export interface PredictionResult {
+  label:      string          // human label: "Suitable" | "Moderately Suitable" | "Not Suitable"
+  class_id:   number | null   // 0 | 1 | 2
+  score:      number | null   // 0.0 – 1.0
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
   elevation:  number
   temperature: number
   rainfall:   number
@@ -50,8 +58,12 @@ export interface PredictionResult {
   sarVV?:          number | null
   sarVH?:          number | null
   satelliteImage?:     string | null
+<<<<<<< HEAD
   segmentationImage?:  string | null
   explanation?:        PredictionExplanation | null
+=======
+  segmentationImage?:  string | null   // base64 PNG from Attention U-Net
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
   modelAvailable?: boolean
   modelStatus?:    string
 }
@@ -78,7 +90,10 @@ export interface Prediction {
   modelStatus?:   string
   featureVector?: number[]
   classProbabilities?: Record<string, number>
+<<<<<<< HEAD
   explanation?:   PredictionExplanation | null
+=======
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
 }
 
 export interface ApiPredictResponse {

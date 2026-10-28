@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react'
+=======
+﻿import { useState, useEffect } from 'react'
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
 import { AnimatePresence, motion } from 'framer-motion'
 import { FiSearch, FiInfo, FiAlertCircle, FiWifi, FiWifiOff } from 'react-icons/fi'
 import { TbMountain } from 'react-icons/tb'
@@ -9,7 +13,11 @@ import MapSection from './MapSection'
 import { callPredict, checkHealth } from '../services/predictionApi'
 import type { PredictionResult } from '../types/prediction'
 
+<<<<<<< HEAD
 // --- Loading step messages shown during GEE processing ----------------------
+=======
+// ─── Loading step messages shown during GEE processing ──────────────────────
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
 const LOADING_STEPS = [
   'Fetching satellite and environmental data...',
   'Analyzing terrain & elevation...',
@@ -53,7 +61,11 @@ export default function PredictionDashboard() {
     checkHealth().then(setHealth)
   }, [])
 
+<<<<<<< HEAD
   // -- Cycling loading messages -----------------------------------------------
+=======
+  // ── Cycling loading messages ───────────────────────────────────────────────
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
   useEffect(() => {
     if (!loading) return
     let i = 0
@@ -65,6 +77,7 @@ export default function PredictionDashboard() {
     return () => clearInterval(id)
   }, [loading])
 
+<<<<<<< HEAD
   // -- Geocode place name using Nominatim ------------------------------------
   const geocodePlace = async (placeName: string): Promise<{ lat: number; lng: number }> => {
     // Queries to try in order
@@ -143,6 +156,31 @@ export default function PredictionDashboard() {
       setSatImage(null)
       setSegImage(null)
     }
+=======
+  // ── Predict handler ────────────────────────────────────────────────────────
+  const handlePredict = async () => {
+    const la = parseFloat(lat)
+    const lo = parseFloat(lng)
+
+    if (isNaN(la) || isNaN(lo)) {
+      setError('Please enter valid numeric coordinates.')
+      return
+    }
+    if (la < -90 || la > 90) {
+      setError('Latitude must be between -90 and 90.')
+      return
+    }
+    if (lo < -180 || lo > 180) {
+      setError('Longitude must be between -180 and 180.')
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+    setSatError(false)
+    setSatImage(null)
+    setSegImage(null)
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
 
     try {
       const data = await callPredict(la, lo, {
@@ -173,7 +211,11 @@ export default function PredictionDashboard() {
     }
   }
 
+<<<<<<< HEAD
   // --- Colour + style based on 3-class result -------------------------------
+=======
+  // ─── Colour + style based on 3-class result ───────────────────────────────
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
   const classLabel = result.label as string
   const scoreColor =
     classLabel === 'Suitable'            ? '#16a34a' :
@@ -208,7 +250,11 @@ export default function PredictionDashboard() {
         paddingBottom: 8,
       }}
     >
+<<<<<<< HEAD
       {/* -- Backend / GEE status banner -------------------------------------- */}
+=======
+      {/* ── Backend / GEE status banner ────────────────────────────────────── */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
       {health !== null && (
         <div
           style={{
@@ -220,7 +266,11 @@ export default function PredictionDashboard() {
             borderRadius: 10,
             background: health.gee ? '#f0fdf4' : '#fef2f2',
             border: `1px solid ${health.gee ? '#bbf7d0' : '#fecaca'}`,
+<<<<<<< HEAD
             fontSize: 14,
+=======
+            fontSize: 12,
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
             fontFamily: 'Inter, sans-serif',
             color: health.gee ? '#166534' : '#991b1b',
           }}
@@ -231,12 +281,20 @@ export default function PredictionDashboard() {
           <span>
             GEE: <strong>{health.gee ? 'Connected' : 'Not connected'}</strong>
             &nbsp;&nbsp;|&nbsp;&nbsp;
+<<<<<<< HEAD
             Model: <strong>{health.model ? 'Connected' : 'Not connected � place model in backend/model/'}</strong>
+=======
+            Model: <strong>{health.model ? 'Connected' : 'Not connected — place model in backend/model/'}</strong>
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
           </span>
         </div>
       )}
 
+<<<<<<< HEAD
       {/* -- Error banner ----------------------------------------------------- */}
+=======
+      {/* ── Error banner ───────────────────────────────────────────────────── */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
       <AnimatePresence>
         {error && (
           <motion.div
@@ -252,7 +310,11 @@ export default function PredictionDashboard() {
               borderRadius: 10,
               background: '#fef2f2',
               border: '1px solid #fecaca',
+<<<<<<< HEAD
               fontSize: 14.5,
+=======
+              fontSize: 13,
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
               fontFamily: 'Inter, sans-serif',
               color: '#991b1b',
             }}
@@ -263,7 +325,11 @@ export default function PredictionDashboard() {
         )}
       </AnimatePresence>
 
+<<<<<<< HEAD
       {/* -- Main white card --------------------------------------------------- */}
+=======
+      {/* ── Main white card ─────────────────────────────────────────────────── */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
       <div
         style={{
           background: '#ffffff',
@@ -275,7 +341,11 @@ export default function PredictionDashboard() {
       >
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
 
+<<<<<<< HEAD
           {/* -------------- LEFT PANEL -------------- */}
+=======
+          {/* ══════════════ LEFT PANEL ══════════════ */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
           <div
             style={{
               width: 280,
@@ -303,7 +373,11 @@ export default function PredictionDashboard() {
                   onClick={() => setTab(t)}
                   style={{
                     flex: 1, padding: '7px 0',
+<<<<<<< HEAD
                     fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 14,
+=======
+                    fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 12.5,
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                     color: tab === t ? '#ffffff' : '#6b7280',
                     background: tab === t ? '#22c55e' : 'transparent',
                     border: 'none', cursor: 'pointer', transition: 'all 0.18s',
@@ -328,7 +402,11 @@ export default function PredictionDashboard() {
                     { label: 'Longitude', val: lng, set: setLng, ph: '73.6581' },
                   ].map(({ label, val, set, ph }) => (
                     <div key={label}>
+<<<<<<< HEAD
                       <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 14, color: '#4b5563', marginBottom: 5 }}>
+=======
+                      <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 12, color: '#4b5563', marginBottom: 5 }}>
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                         {label}
                       </div>
                       <div style={{ position: 'relative' }}>
@@ -343,7 +421,11 @@ export default function PredictionDashboard() {
                             width: '100%', boxSizing: 'border-box',
                             paddingLeft: 28, paddingRight: 10, paddingTop: 8, paddingBottom: 8,
                             border: '1.5px solid #e5e7eb', borderRadius: 10,
+<<<<<<< HEAD
                             fontFamily: 'Inter, sans-serif', fontSize: 14.5, color: '#374151',
+=======
+                            fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#374151',
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                             outline: 'none', transition: 'border-color 0.14s',
                             opacity: loading ? 0.6 : 1,
                           }}
@@ -360,7 +442,11 @@ export default function PredictionDashboard() {
                   initial={{ opacity: 0, x: 6 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -6 }} transition={{ duration: 0.14 }}
                 >
+<<<<<<< HEAD
                   <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 14, color: '#4b5563', marginBottom: 5 }}>
+=======
+                  <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 12, color: '#4b5563', marginBottom: 5 }}>
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                     Place Name
                   </div>
                   <div style={{ position: 'relative' }}>
@@ -369,20 +455,28 @@ export default function PredictionDashboard() {
                       type="text"
                       value={place}
                       onChange={(e) => setPlace(e.target.value)}
+<<<<<<< HEAD
                       onKeyDown={(e) => { if (e.key === 'Enter' && !loading) handlePredict() }}
+=======
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                       placeholder="e.g. Mahabaleshwar, India"
                       disabled={loading}
                       style={{
                         width: '100%', boxSizing: 'border-box',
                         paddingLeft: 28, paddingRight: 10, paddingTop: 8, paddingBottom: 8,
                         border: '1.5px solid #e5e7eb', borderRadius: 10,
+<<<<<<< HEAD
                         fontFamily: 'Inter, sans-serif', fontSize: 14.5, color: '#374151',
+=======
+                        fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#374151',
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                         outline: 'none',
                       }}
                       onFocus={(e) => (e.currentTarget.style.borderColor = '#22c55e')}
                       onBlur={(e) => (e.currentTarget.style.borderColor = '#e5e7eb')}
                     />
                   </div>
+<<<<<<< HEAD
                   {/* Show resolved coordinates after search */}
                   {lat && lng && place && (
                     <div style={{
@@ -393,6 +487,8 @@ export default function PredictionDashboard() {
                       ?? {parseFloat(lat).toFixed(4)}�N, {parseFloat(lng).toFixed(4)}�E
                     </div>
                   )}
+=======
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                 </motion.div>
               )}
             </AnimatePresence>
@@ -407,7 +503,11 @@ export default function PredictionDashboard() {
                 width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
                 padding: '10px 0', borderRadius: 10,
                 background: loading ? '#86efac' : '#22c55e',
+<<<<<<< HEAD
                 color: '#fff', fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 14.5,
+=======
+                color: '#fff', fontFamily: 'Inter, sans-serif', fontWeight: 600, fontSize: 13,
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                 border: 'none', cursor: loading ? 'not-allowed' : 'pointer',
                 boxShadow: '0 3px 10px rgba(34,197,94,0.3)',
               }}
@@ -430,7 +530,11 @@ export default function PredictionDashboard() {
               {loading && loadingStep && (
                 <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+<<<<<<< HEAD
                   style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, color: '#6b7280', textAlign: 'center', marginTop: -8 }}
+=======
+                  style={{ fontFamily: 'Inter, sans-serif', fontSize: 11.5, color: '#6b7280', textAlign: 'center', marginTop: -8 }}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                 >
                   {loadingStep}
                 </motion.div>
@@ -441,10 +545,17 @@ export default function PredictionDashboard() {
             <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, padding: '12px', display: 'flex', gap: 8 }}>
               <FiInfo size={14} style={{ color: '#22c55e', flexShrink: 0, marginTop: 1 }} />
               <div>
+<<<<<<< HEAD
                 <p style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 14, color: '#14532d', margin: '0 0 4px 0' }}>
                   How it works?
                 </p>
                 <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.55, color: '#166534', margin: 0 }}>
+=======
+                <p style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 12.5, color: '#14532d', margin: '0 0 4px 0' }}>
+                  How it works?
+                </p>
+                <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 11.5, lineHeight: 1.55, color: '#166534', margin: 0 }}>
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                   Our model analyzes 9 different environmental and meteorological
                   factors to predict the ecotourism suitability of the given location.
                 </p>
@@ -452,14 +563,22 @@ export default function PredictionDashboard() {
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* -------------- RIGHT PANEL -------------- */}
+=======
+          {/* ══════════════ RIGHT PANEL ══════════════ */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
           <div style={{ flex: 1, minWidth: 0, padding: '20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
 
             <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 14, color: '#111827' }}>
               Prediction Result
             </div>
 
+<<<<<<< HEAD
             {/* -- BIG suitability result banner -- */}
+=======
+            {/* ── BIG suitability result banner ── */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
             <motion.div
               key={result.label}
               initial={{ opacity: 0, scale: 0.97 }}
@@ -506,23 +625,36 @@ export default function PredictionDashboard() {
                   {loading ? 'Analyzing...' : result.label}
                 </div>
                 <div style={{
+<<<<<<< HEAD
                   fontFamily: 'Inter, sans-serif', fontSize: 14.5,
+=======
+                  fontFamily: 'Inter, sans-serif', fontSize: 13,
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                   color: 'rgba(255,255,255,0.85)', marginTop: 5,
                 }}>
                   Suitability Score:{' '}
                   <span style={{ fontWeight: 800, fontSize: 16 }}>
+<<<<<<< HEAD
                     {loading ? '�' : result.score !== null ? result.score.toFixed(2) : 'N/A'}
+=======
+                    {loading ? '—' : result.score !== null ? result.score.toFixed(2) : 'N/A'}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                   </span>
                   {' '}/ 1.00
                 </div>
                 {result.modelAvailable === false && !loading && (
+<<<<<<< HEAD
                   <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 14.5, color: 'rgba(255,255,255,0.6)', marginTop: 3 }}>
+=======
+                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 11, color: 'rgba(255,255,255,0.6)', marginTop: 3 }}>
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                     Model not connected
                   </div>
                 )}
               </div>
             </motion.div>
 
+<<<<<<< HEAD
             {/* -- Explanation card -- */}
             {result.explanation && !loading && (
               <motion.div
@@ -589,11 +721,15 @@ export default function PredictionDashboard() {
             )}
 
             {/* -- 3 metric cards -- */}
+=======
+            {/* ── 3 metric cards ── */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
               <motion.div whileHover={{ y: -2, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
                 style={{ background: '#fff', border: '1.5px solid #e5e7eb', borderRadius: 16, padding: '14px', minHeight: 80, transition: 'box-shadow 0.2s' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>
                   <TbMountain size={14} style={{ color: '#9ca3af' }} />
+<<<<<<< HEAD
                   <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 14.5, fontWeight: 500, color: '#6b7280' }}>Elevation</span>
                 </div>
                 <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 22, color: '#111827', lineHeight: 1 }}>
@@ -603,10 +739,22 @@ export default function PredictionDashboard() {
               </motion.div>
 
               {/* Card 3 � Temperature */}
+=======
+                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 11, fontWeight: 500, color: '#6b7280' }}>Elevation</span>
+                </div>
+                <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 22, color: '#111827', lineHeight: 1 }}>
+                  {loading ? '—' : result.elevation}
+                  <span style={{ fontSize: 13, fontWeight: 400, color: '#6b7280', marginLeft: 3 }}>m</span>
+                </div>
+              </motion.div>
+
+              {/* Card 3 — Temperature */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
               <motion.div whileHover={{ y: -2, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
                 style={{ background: '#fff', border: '1.5px solid #e5e7eb', borderRadius: 16, padding: '14px', minHeight: 80, transition: 'box-shadow 0.2s' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>
                   <WiThermometer size={18} style={{ color: '#9ca3af' }} />
+<<<<<<< HEAD
                   <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 14.5, fontWeight: 500, color: '#6b7280' }}>Temperature</span>
                 </div>
                 <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 22, color: '#111827', lineHeight: 1 }}>
@@ -616,20 +764,43 @@ export default function PredictionDashboard() {
               </motion.div>
 
               {/* Card 4 � Rainfall */}
+=======
+                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 11, fontWeight: 500, color: '#6b7280' }}>Temperature</span>
+                </div>
+                <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 22, color: '#111827', lineHeight: 1 }}>
+                  {loading ? '—' : result.temperature}
+                  <span style={{ fontSize: 13, fontWeight: 400, color: '#6b7280', marginLeft: 3 }}>°C</span>
+                </div>
+              </motion.div>
+
+              {/* Card 4 — Rainfall */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
               <motion.div whileHover={{ y: -2, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
                 style={{ background: '#fff', border: '1.5px solid #e5e7eb', borderRadius: 16, padding: '14px', minHeight: 80, transition: 'box-shadow 0.2s' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>
                   <WiRaindrops size={18} style={{ color: '#9ca3af' }} />
+<<<<<<< HEAD
                   <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 14.5, fontWeight: 500, color: '#6b7280' }}>Rainfall</span>
                 </div>
                 <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#111827', lineHeight: 1 }}>
                   {loading ? '�' : result.rainfall}
                   <span style={{ fontSize: 14.5, fontWeight: 400, color: '#6b7280', marginLeft: 3 }}>mm/year</span>
+=======
+                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 11, fontWeight: 500, color: '#6b7280' }}>Rainfall</span>
+                </div>
+                <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#111827', lineHeight: 1 }}>
+                  {loading ? '—' : result.rainfall}
+                  <span style={{ fontSize: 11, fontWeight: 400, color: '#6b7280', marginLeft: 3 }}>mm/year</span>
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
                 </div>
               </motion.div>
             </div>
 
+<<<<<<< HEAD
             {/* -- Leaflet Map -- */}
+=======
+            {/* ── Leaflet Map ── */}
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
             <div style={{ borderRadius: 14, overflow: 'hidden', border: '1.5px solid #e5e7eb', flex: 1, minHeight: 380 }}>
               <MapSection result={result} defaultLat={17.9252} defaultLng={73.6581} satelliteImage={satImage} segmentationImage={segImage} />
             </div>

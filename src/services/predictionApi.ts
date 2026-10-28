@@ -24,6 +24,7 @@ export async function callPredict(
 
   onProgress?.('Validating coordinates...')
 
+<<<<<<< HEAD
   // GEE + U-Net can take up to 3 minutes — use AbortController with 3min timeout
   const controller = new AbortController()
   const timeoutId  = setTimeout(() => controller.abort(), 180000)
@@ -44,6 +45,13 @@ export async function callPredict(
   } finally {
     clearTimeout(timeoutId)
   }
+=======
+  const response = await fetch(`${API_BASE}/predict`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ latitude: lat, longitude: lng }),
+  })
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
 
   const json: ApiPredictResponse = await response.json()
 
@@ -73,7 +81,10 @@ export async function callPredict(
     sarVH:          rawFeatures.SAR_VH,
     satelliteImage:    satelliteImage    ?? null,
     segmentationImage: segmentationImage ?? null,
+<<<<<<< HEAD
     explanation:       prediction.explanation ?? null,
+=======
+>>>>>>> ce5cb1dca9cacff24ac2b0af49eb27a9bd8b0f56
     modelAvailable: prediction.modelAvailable,
     modelStatus:    prediction.modelStatus,
   }
